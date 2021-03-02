@@ -22,7 +22,7 @@ def about():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
   if 'email' in session:
-    return redirect(url_for('home',external=True,
+    return redirect(url_for('home',
         _scheme='https'))
 
   form = SignupForm()
@@ -36,7 +36,7 @@ def signup():
       db.session.commit()
 
       session['email'] = newuser.email
-      return redirect(url_for('home',external=True,
+      return redirect(url_for('home',
         _scheme='https'))
 
   elif request.method == "GET":
@@ -60,10 +60,10 @@ def login():
       user = User.query.filter_by(email=email).first()
       if user is not None and user.check_password(password):
         session['email'] = form.email.data
-        return redirect(url_for('home',external=True,
+        return redirect(url_for('home',
         _scheme='https'))
       else:
-        return redirect(url_for('login',external=True,
+        return redirect(url_for('login',
         _scheme='https'))
 
   elif request.method == 'GET':
@@ -72,13 +72,13 @@ def login():
 @app.route("/logout")
 def logout():
   session.pop('email', None)
-  return redirect(url_for('index',external=True,
+  return redirect(url_for('index',
         _scheme='https'))
 
 @app.route("/home", methods=["GET", "POST"])
 def home():
   if 'email' not in session:
-    return redirect(url_for('login',external=True,
+    return redirect(url_for('login',
         _scheme='https'))
 
   form = AddressForm()
