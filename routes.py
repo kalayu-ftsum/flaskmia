@@ -105,4 +105,4 @@ def home():
     return render_template("home.html", form=form, my_coordinates=my_coordinates, places=places)
 
 if __name__ == "__main__":
-  app.run(debug=False)
+  app.run(debug=True)
