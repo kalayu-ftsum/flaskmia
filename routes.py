@@ -6,7 +6,9 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://tzytdzxowovihs:a4dfa9d4f70abf17e0058c3de14ee8b4b652ad18af94bfaabfce0b8e7ab308ad@ec2-18-207-95-219.compute-1.amazonaws.com:5432/dbuf0i18m68jpe'# add your Heroku Postgres database URL here
 db.init_app(app)
-
+app.config.update(dict(
+  PREFERRED_URL_SCHEME = 'https'
+))
 app.secret_key = "development-key"
 
 @app.route("/")
